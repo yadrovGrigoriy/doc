@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="mt-4">
+    <h3 class="text-center mb-2">Расчет Показателя Репродуктивного Здоровья </h3>
+    <form action="" method="post">
+    {{ form.csrf_token() }}
+        <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>Показатель</th>
+                <th>Цифровой или мнемонический эквивалент</th>
+<!--                <th>значение</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            {% for field in form if field.name != "csrf_token" %}
+
+                <tr>
+                    <td>{{ field.label() }}</td>
+                    <td>{{ field }}</td>
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    <input type="submit" value="Сохранить">
+    </form>
+        </div>
+{% endblock %}
+

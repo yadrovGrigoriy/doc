@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="mt-4">
+    <h3 class="text-center">Расчет Коэффициента Репродуктивной Активности </h3>
+    <form action="" method="post">
+    {{ form.csrf_token() }}
+        <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>Вопрос</th>
+                <th>Числовое значение коэффициента</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for field in form if field.name != "csrf_token" %}
+                <tr>
+                    <td>{{ field.label() }}</td>
+                    <td>{{ field }}</td>
+                    {% for error in field.errors %}
+                    {{ error }}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    <input type="submit" value="Далее">
+    </form>
+    </div>
+{% endblock %}
+
