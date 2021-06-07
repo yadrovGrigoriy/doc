@@ -126,3 +126,7 @@ def poll_2():
         return redirect(url_for('confirmed', res=json.dumps(res)))
     # end handle submit
     return render_template('poll_2.html', form=form, prev_poll=prev_poll)
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1',port=8000,debug=True)
