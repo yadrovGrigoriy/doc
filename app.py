@@ -93,6 +93,7 @@ def poll_1():
     form = forms.Poll1Form()
     # handle submit =====================================
     if form.validate_on_submit():
+        print('submit')
         # data = field_weight_correction(form.data)
         return redirect(url_for('poll_2', prev_poll=json.dumps(form.data)))
     # end handle submit ==================================
