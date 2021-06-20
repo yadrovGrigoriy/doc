@@ -1,436 +1,69 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, SelectField
-from wtforms.validators import DataRequired, Email
+import fields
+from fields import FIELDS
 
-additional_fields = dict(
-    SPKYA_adv=SelectField(
-        u'Возраст',
-        choices=[
-            (0.1, 'старше 49'),
-            (0.2, '43-48'),
-            (0.3, '40-42'),
-            (0.5, '36-39'),
-            (0.7, '32-35'),
-            (1, '20-31'),
-            (1, 'моложе 20'),
-        ]
-    )
-)
 
 
 class Poll1Form(FlaskForm):
-    ages = SelectField(
-        u'Возраст',
-        choices=[
-            (0.1, 'старше 49'),
-            (0.2, '43-48'),
-            (0.3, '40-42'),
-            (0.5, '36-39'),
-            (0.7, '32-35'),
-            (1, '20-31'),
-            (1, 'моложе 20'),
-        ]
-    )
-
-    coef_not_preg_period = SelectField(
-        u'КПБ (Коэффициент продолжительности бесплодия)',
-        choices=[
-            (0.3, 'более 15 лет'),
-            (0.5, '5-15 лет'),
-            (0.7, '3-4 года'),
-            (1, '1-2 Года'),
-            (0.0, 'планирование беременности'),
-
-        ]
-    )
-
-    coef_ovulation = SelectField(
-        u'КО (коэффициент овуляции)',
-        choices=[
-            (0.3, 'цикл ановуляторный'),
-            (0.5, 'чередование овуляторных и ановуляторных'),
-            (1, 'овуляторные циклы'),
-            (0.0, 'цикл не исследовался'),
-        ]
-    )
-    coef_fert_sperm = SelectField(
-        u'КФС (коэффициент фертильности спермы)',
-        choices=[
-            (0, 'аспермия мужа'),
-            (0.3, 'тяжелые формы нарушения спермограммы'),
-            (0.5, 'пограничное значение спермы'),
-            (1, 'фертильная сперма'),
-            (0.0, 'сперма нe исследовалась'),
-
-        ]
-    )
-    pipes = SelectField(
-        u'КТБ (Коэффициент трубного благополучия)',
-        choices=[
-            (0.1, 'трубы не проходимы, обе маточные трубы удалены'),
-            (0.3, 'проходима одна труба или реконструктивно-пластические операции на маточных трубах'),
-            (1, 'трубы проходимы'),
-            (0, 'оценки проходимости маточных труб не было'),
-        ]
-    )
+    ages = FIELDS['ages']
+    coef_not_preg_period = FIELDS['coef_not_preg_period']
+    coef_ovulation = FIELDS['coef_ovulation']
+    coef_fert_sperm = FIELDS['coef_fert_sperm']
+    coef_pipes_wellbeing = FIELDS['coef_pipes_wellbeing']
 
 
 class Poll2Form(FlaskForm):
-    rodi_v_anamnez = SelectField(
-        u'Роды в анамнезе',
-        choices=[
-            (2, '1 и более'),
-            (1, 'патологические роды'),
-            (0, 'отсутствие родов'),
-        ]
-    )
-    aborts = SelectField(
-        u'Аборты в анамнезе',
-        choices=[
-            (2, '1 и более'),
-            (1, 'отсутствие абортов'),
-            (0, 'осложненный аборт'),
-        ]
-    )
-    vikidish = SelectField(
-        u'Выкидыш в анамнезе',
-        choices=[
-            (2, '1 или 2'),
-            (1, 'отсутствие выкидыша'),
-            (0, 'привычное невынашивание'),
-            (0, 'инфицированный выкидыш'),
-        ]
-    )
-    vnematochnaya_beremennost = SelectField(
-        u'Внематочная беременность в анамнезе',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            (-2, 'повторные внематочные'),
-        ]
-    )
+    rodi_v_anamnez = FIELDS['rodi_v_anamnez']
+    aborts = FIELDS['aborts']
+    vikidish = FIELDS['vikidish']
+    vnematochnaya_beremennost = FIELDS['vnematochnaya_beremennost']
+    bezplidie_u_rodstvennikov = FIELDS['bezplidie_u_rodstvennikov']
+    previously_applied_treatments = FIELDS['previously_applied_treatments']
+    smoking = FIELDS['smoking']
+    harakter_bezplodiya = FIELDS['harakter_bezplodiya']
+    night_shifts = FIELDS['night_shifts']
+    infertility_reasons = FIELDS['infertility_reasons']
+    chlamydial_trace = FIELDS['chlamydial_trace']
+    frequent_inflammatory_diseases = FIELDS['frequent_inflammatory_diseases']
+    narugniy_genitalniy_endometrioz = FIELDS['narugniy_genitalniy_endometrioz']
+    adenomyos = FIELDS['adenomyos']
+    myoma_matki = FIELDS['myoma_matki']
+    giperplasticheskiy_process = FIELDS['giperplasticheskiy_process']
+    SPKYA = FIELDS['SPKYA']
+    narushenya_menstr = FIELDS['narushenya_menstr']
+    sinehii_matki = FIELDS['sinehii_matki']
+    anomaliya_razvitiya_matki = FIELDS['anomaliya_razvitiya_matki']
+    operacii_na_matichnih_trubah = FIELDS['operacii_na_matichnih_trubah']
+    apopleksiya_yaichnika = FIELDS['apopleksiya_yaichnika']
+    rezekciya_yaichnika = FIELDS['rezekciya_yaichnika']
+    andeksektomiya = FIELDS['andeksektomiya']
+    time_after_operation = FIELDS['time_after_operation']
+    nalichie_obrazovaniya = FIELDS['nalichie_obrazovaniya']
+    height_patient = FIELDS['height_patient']
+    weight_patient = FIELDS['weight_patient']
+    height_partner = FIELDS['height_partner']
+    weight_partner = FIELDS['weight_partner']
+    girsutizm = FIELDS['girsutizm']
+    autimunniy_tireodit = FIELDS['autimunniy_tireodit']
+    gipertireoz = FIELDS['gipertireoz']
+    gipOtireoz = FIELDS['gipOtireoz']
+    diabet = FIELDS['diabet']
+    gypergonadotropnoe_sostoyanie = FIELDS['gypergonadotropnoe_sostoyanie']
+    koncentraciya_FSG = FIELDS['koncentraciya_FSG']
+    koncentraciya_LG = FIELDS['koncentraciya_LG']
+    koncentraciya_AMG = FIELDS['koncentraciya_AMG']
+    gyperprolaktinemiya = FIELDS['gyperprolaktinemiya']
+    gyperandrogeniya = FIELDS['gyperandrogeniya']
+    postkoitalniy_test = FIELDS['postkoitalniy_test']
+    count_antral_folliculs = FIELDS['count_antral_folliculs']
+    gipoplaziya_endometriya = FIELDS['gipoplaziya_endometriya']
 
-    bezplidie_u_rodstvennikov = SelectField(
-        u'Бесплодие у близких родственников',
-        choices=[
-            (2, 'Нет указания на бесплодие близких родственников'),
-            (0, 'Бесплодие у родственников первой степени родства'),
-        ]
-    )
-    previously_applied_treatments = SelectField(
-        u'Ранее примененные методы лечения',
-        # todo доделать при выборе "Стимуляция овуляции" на фронте
-        choices=[
-            (2, 'отсутствие'),
-            (1, 'Стимуляция овуляции'),
-            (0, 'Хирургическое лечение бесплодия'),
-            (-1, 'Искусственная инсеминация, ЭКО или ИКСИ'),
-            (-2, 'Донация ооцитов или суррогатное материнство'),
-        ]
-    )
-    smoking = SelectField(
-        u'Курение ',
-        choices=[
-            (2, 'Не курит и никогда не курила'),
-            (1, 'Не курит последние 28 суток'),
-            (0, 'Курит'),
-        ]
-    )
-    harakter_bezplodiya = SelectField(
-        u'Характер бесплодия ',
-        choices=[
-            (2, 'вторичное'),
-            (1, 'первичное'),
-        ]
-    )
-    night_shifts = SelectField(
-        u'Ночные дежурства',
-        choices=[
-            (2, 'Нет'),
-            (1, 'Редко'),
-            (0, 'Ночные дежурства'),
-        ]
-    )
-    infertility_reasons = SelectField(
-        u'Причины бесплодия ',
-        choices=[
-            (2, 'неуточненное'),
-            (1, 'эндокринное'),
-            (0.0, 'Мужское'),  # todo додделать в js
-            (0.0, 'Трубное'),  # todo додделать в js
-            (0.0, 'Маточного происхождения'),  # todo додделать в js
-            (0.0, 'Цервикального происхождения'),
-        ]
-    )
-    chlamydial_trace = SelectField(
-        u'Наличие хламидийного следа',
-        choices=[
-            (2, 'отсутствие серологического подтверждения инфекции'),
-            (1, 'обследование не проводилось, курс санации хламидийной инфекции'),
-            (0, 'серологического подтверждения инфекции'),
-        ]
-    )
-    frequent_inflammatory_diseases = SelectField(
-        u'Частые воспалительные заболевания (обострение аднексита, эндометрита)',
-        choices=[
-            (2, 'отсутствие'),
-            (1, 'Ранее в анамнезе (более 2 х лет назад)'),
-            (0, 'Да'),
-        ]
-    )
-    narugniy_genitalniy_endometrioz = SelectField(
-        u'Наружный генитальный эндометриоз в анамнезе',
-        choices=[
-            (2, 'отсутствие или нет данных'),
-            (1, 'эпизод в анамнезе'),
-            (0, 'рецидивирующее течение '),
-            # (0.0,  'уточнение (для медицинских специалистов'),#todo для мед спецов сделать еще одну форму
-        ]
-    )
-    adenomyos = SelectField(
-        u'Аденомиоз (эндометриоз тела матки)',
-        choices=[
-            (2, 'отсутствие'),
-            (0, 'аденомиоз в анамнезе'),
-            # (0.0, 'Уточнение (для медицинских специалистов)'), #todo для мед спецов сделать еще одну форму
-        ]
-    )
-    myoma_matki = SelectField(
-        u'Миома матки',
-        choices=[
-            (2, 'отсутствие'),
-            (1, 'наличие узлов менее 2 см'),
-            (-2, 'субмукозная локализация или наличие множественных узлов, три из которых более 2 см'),
-            # (0.0, 'Уточнение (для медицинских специалистов)'),  # todo для мед спецов сделать еще одну форму
-        ]
-    )
-    giperplasticheskiy_process = SelectField(
-        u'Гиперпластический процесс эндометрия',
-        choices=[
-            (2, 'отсутствие'),
-            (0, 'Гиперпластический процесс эндометрия'),
-            # (0.0, 'Уточнение (для медицинских специалистов)'),  # todo для мед спецов сделать еще одну форму
-        ]
-    )
-    SPKYA = SelectField(
-        u'СПКЯ (Синдром поликистозных яичников)',
-        choices=[
-            (2, 'отсутствие'),
-            (1, 'Да'),
-            (0, 'Оперативное лечение СПКЯ'),  # todo  сделатьвспылвающую  форму
-        ]
-    )
-    narushenya_menstr = SelectField(
-        u'Клинические формы нарушения менструальной функции',
-        choices=[
-            (2, 'Нет нарушения менструальной функции'),
-            (-1, 'продолжительность цикла менее 21 дня или более 35 дней'),  # todo сделать доп форму  при нажатии
-
-        ]
-    )
-    sinehii_matki = SelectField(
-        u'Синехии полости матки',
-        choices=[
-            (2, 'Нет'),
-            (1, 'единичные, парциальные'),
-            (0, 'повторные вмешательства при синехиях'),
-            # todo меняется в зависимости роли
-        ]
-    )
-    anomaliya_razvitiya_matki = SelectField(
-        u'Аномалия развития матки',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            # (0.0, 'Уточнение (для медицинских специалистов)'),  # todo для мед спецов сделать еще одну форму
-        ]
-    )
-    operacii_na_matichnih_trubah = SelectField(
-        u'Реконструктивно-пластические операции на маточных трубах',
-        choices=[
-            (4, 'Нет'),
-            (1, 'сальпинголизис'),
-            (0, 'сальпингостомия'),
-            (-4, 'повторные консервативно-пластические операции на маточных трубах'),
-            # (0.0, 'Уточнение (для медицинских специалистов)'),  # todo для мед спецов сделать еще одну форму
-        ]
-    )
-    apopleksiya_yaichnika = SelectField(
-        u'Апоплексия яичника в анамнезе',
-        choices=[
-            (2, 'Нет указания'),
-            (1, 'болевая форма'),
-            (0, 'факт хирургического вмешательства'),
-            (-1, 'повторные хирургические вмешательства'),
-        ]
-    )
-    rezekciya_yaichnika = SelectField(
-        u'Резекция яичников',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            (-2, 'повторные резекции или субтотальная'),
-        ]
-    )
-    andeksektomiya = SelectField(
-        u'Аднексэктомия в анамнезе',
-        choices=[
-            (2, 'Нет'),
-            (1, 'Да'),
-            (-10, 'двусторонняя'),
-        ]
-    )
-    time_after_operation = SelectField(
-        u'Время, прошедшее после оперативного лечения бесплодия',
-        choices=[
-            (4, 'Менее 8 месяцев'),
-            (1, 'Менее 1 года'),
-            (0, 'Оперативное лечение не проводилось'),
-            (-1, 'Более 1 года'),
-        ]
-    )
-    nalichie_obrazovaniya = SelectField(
-        u'Наличие объемного образования яичников',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Наличие функциональных кист яичников'),
-            (-2, 'Длительно существующее объёмное образование яичников'),
-        ]
-    )
-    # todo расчитать индекс массы тела масса тела (кг)/рост(м2).
-    lishniy_ves = SelectField(
-        u'Избыточный вес (ожирение)',
-        choices=[
-            (2, 'Нет'),
-            (1, 'избыточная масса тела или ожирение 1 ст.'),
-            (-2, 'ожирение 2-3 степени'),
-        ]
-    )
-    # todo расчитать индекс массы тела масса тела партнера (кг)/рост(м2).
-    lishniy_ves_partnera = SelectField(
-        u'Ожирение у мужа (полового партнера)',
-        choices=[
-            (2, 'Нет'),
-            (1, 'избыточная масса тела или ожирение 1 ст.'),
-            (-2, 'ожирение 2-3 степени'),
-        ]
-    )
-    girsutizm = SelectField(
-        u'Гирсутизм',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Легкая степень'),
-            (-2, 'Тяжелая степень'),
-            # (0.0, 'ДА'),#todo расчитать по форме которую нужно доделать
-        ]
-    )
-    autimunniy_tireodit = SelectField(
-        u'Аутоиммунный тиреодит',
-        choices=[
-            (2, 'Нет'),
-            (0, 'диагностирован'),
-        ]
-    )
-    gipertireoz = SelectField(
-        u'Гипертиреоз',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            (-2, 'не компенсированный в момент заполнения анкеты'),
-        ]
-    )
-    gipOtireoz = SelectField(
-        u'Гипотиреоз',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            (-2, 'не компенсированный в момент заполнения анкеты'),
-        ]
-    )
-    diabet = SelectField(
-        u'Сахарный диабет',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-            (-2, 'не компенсированный в момент заполнения анкеты'),
-        ]
-    )
-    gypergonadotropnoe_sostoyanie = SelectField(
-        u'Гипергонадотропное состояние',
-        choices=[
-            (2, 'Нет'),
-            (0, 'нарушенное соотношение ЛГ/ФСГ'),
-            (-2, 'Гипергонадоторопное состояние при повторном обследовании'),
-        ]
-    )
-    koncentraciya_FSG = SelectField(
-        u'Концентрация ФСГ',
-        choices=[
-            (4, 'до 7 мМЕ/мл'),
-            (1, '7-15 мМЕ/мл'),
-            (0, 'Более 15 и выше мМЕ/мл'),
-        ]
-    )
-    koncentraciya_LG = SelectField(
-        u'Концентрация ЛГ',
-        choices=[
-            (2, 'до 7 мМЕ/мл'),
-            (1, '7-15 мМЕ/мл'),
-            (0, 'Более 15 и выше мМЕ/мл'),
-        ]
-    )
-    koncentraciya_AMG = SelectField(
-        u'Концентрация АМГ',
-        choices=[
-            (4, 'От 1 до 5 нг/мл'),
-            (1, 'от 5 до 15 или от 0.3 до 0,9нг/мл'),
-            (0, 'менее 0.3 нг/мл'),
-        ]
-    )
-    gyperprolaktinemiya = SelectField(
-        u'Гиперпролактинемия',
-        choices=[
-            (2, 'Нет'),
-            (1, 'Медикаментозно компенсированная'),
-            (0, 'Не компенсированный в момент заполнения анкеты'),
-        ]
-    )
-    gyperandrogeniya = SelectField(
-        u'Гиперандрогения',
-        choices=[
-            (2, 'Нет'),
-            (0, 'Да'),
-        ]
-    )
-    postkoitalniy_test = SelectField(  # todo возвможно удление
-        u'Данные посткоитального теста',
-        choices=[
-            (2, 'Положительный (хороший) ПКТ'),
-            (1, 'Неинформативные тесты, противоречивые, тест не проведен'),
-            (0, 'Неудовлетворительный ПКТ'),
-        ]
-    )
-    count_antral_folliculs = SelectField(
-        u'Число антральных фолликулов',
-        choices=[
-            (3, 'более 5, менее 15'),
-            (2, 'более 20 или менее 5'),
-            (1, 'Единичные'),
-            (0, 'не определяется'),
-        ]
-    )
-    gipoplaziya_endometriya = SelectField(
-        u'Гипоплазия эндометрия',
-        choices=[
-            (2, 'Более 7 мм'),
-            (1, 'Толщина эндометрия 5-7 мм'),
-            (0, 'Толщина эндометрия менее 5 мм'),
-        ]
-    )
-
+#
 
 class AdditionalForm(FlaskForm):
-    def __init__(self, fields_list):
-        for field in fields_list:
-            self[field] = additional_fields[field]
+    pass
 
+    # def __init__(self, fields_list, **kwargs):
+    #     for field in fields_list:
+    #         self[field] = fields[field]
+    #     super().__init__(**kwargs)
