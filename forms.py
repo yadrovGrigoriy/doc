@@ -3,12 +3,16 @@ import fields
 from fields import FIELDS
 
 
-
 class Poll1Form(FlaskForm):
     ages = FIELDS['ages']
     coef_not_preg_period = FIELDS['coef_not_preg_period']
     coef_ovulation = FIELDS['coef_ovulation']
-    coef_fert_sperm = FIELDS['coef_fert_sperm']
+    # coef_fert_sperm = FIELDS['coef_fert_sperm']
+    spermotozoid_count = FIELDS['spermotozoid_count']
+    spermotozoid_concentration = FIELDS['spermotozoid_concentration']
+    spermotozoid_mobility = FIELDS['spermotozoid_mobility']
+    spermotozoid_viability = FIELDS['spermotozoid_viability']
+    spermotozoid_morfology = FIELDS['spermotozoid_morfology']
     coef_pipes_wellbeing = FIELDS['coef_pipes_wellbeing']
 
 
@@ -57,6 +61,7 @@ class Poll2Form(FlaskForm):
     postkoitalniy_test = FIELDS['postkoitalniy_test']
     count_antral_folliculs = FIELDS['count_antral_folliculs']
     gipoplaziya_endometriya = FIELDS['gipoplaziya_endometriya']
+
 
 #
 
