@@ -44,13 +44,6 @@ def calc_res_with_combinations(data, result):
     ):
         result = result * 0.2
 
-    if (
-
-
-    ):
-        pass
-
-    print(result)
     return result
 
 
@@ -59,15 +52,10 @@ def fields_weight_correction(data):
         корректировка значений исходя из значений других элементов
         '0.0' - значение нужно расчитать исходя из других показателей
     """
-
-
-
     return data
 
 def update_row_results_for_poll_1(data: dict):
-    """ Пересчет части полей и удаление лишних(дополнительных) вернет модифицированый второй опрос для формы 1
-     @param FIELDS['coef_ovulation']
-    """
+    """ Пересчет части полей и удаление лишних(дополнительных) вернет модифицированый второй опрос для формы 1 """
 
     # пересчет коэффициента овуляции
     if data.get('coef_ovulation') == 'specify':
@@ -121,7 +109,11 @@ def update_row_results_for_poll_2(data: dict):
         res = data.copy()
     else:
         res = json.loads(polls['poll_2'])
-    # корректировка коэффициента овуляции FIELDS['coef_ovulation']
+
+    # if data.get('infertility_reasons') == 'af':
+    #     if int(polls['poll_1'].get('coef_fert_sperm')) < :
+    #         pass #todo ждем уточнения
+
 
     #Расчет ИМТ
     if data.get('weight_patient') and data.get('height_patient'):
@@ -154,12 +146,10 @@ def update_row_results_for_poll_2(data: dict):
 def generate_additional_form(data):
     """формирует дополнительную форму на основе второй формы"""
     res = []
-    if data['previously_applied_treatments'] == '1':
+    if data['previously_applied_treatments'] == '1':  # = Стимуляция овуляции
         res.append('previously_applied_treatments_ad_1')
-    if data['infertility_reasons'] == 'af':
-        res.append('infertility_reasons_ad_1')
-    if data['SPKYA'] in ['1', '0']:
-        res.extend(['SPKYA_ad_1', 'SPKYA_ad_2', 'SPKYA_ad_3', 'SPKYA_ad_3'])
+    # if data['SPKYA'] in ['1', 'af']: # todo ждем уточнения
+    #     res.extend(['SPKYA_ad_1', 'SPKYA_ad_2', 'SPKYA_ad_3', 'SPKYA_ad_3'])
     if data['girsutizm'] == 'af':
         res.extend([f'girsutizm_ad_{number}' for number in range(1, 12)])# всего 11 полей дополниельной формы
     return res
@@ -189,10 +179,8 @@ def poll_2():
     form = forms.Poll2Form()
     # handle submit
     if form.validate_on_submit():
-        polls = session['polls']
         updates_data = update_row_results_for_poll_2(form.data)  # расчет индекса массы тела и прочих преобразованй с зменой полей
         polls['poll_2'] = json.dumps(updates_data)
-        polls = session['polls']
         # generate additional poll
         fields_list = generate_additional_form(updates_data)
         if len(fields_list) > 0:

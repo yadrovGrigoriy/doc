@@ -20,7 +20,7 @@ def calc_weight_by_IMT(weight: int, height: int):
     elif IMT >= 40:
         return 0
 
-def calc_total_weight(data):
+def calc_PRZ_weight(data):
     res = 0
     for key, value in data.items():
         if key != 'csrf_token':
@@ -28,12 +28,20 @@ def calc_total_weight(data):
     return res
 
 
+def calc_KRA_weight(data):
+    res = 1
+    for key, value in data.items():
+        if key != 'csrf_token':
+            res *= float(value)
+    return round(res, 3)
+
+
 def calc_finally_result():
     print('done')
     polls = session.get('polls')
     print(polls)
-    KRA = calc_total_weight(json.loads(polls['poll_1']))
-    PRZ = calc_total_weight(json.loads(polls['poll_2']))
+    KRA = calc_KRA_weight(json.loads(polls['poll_1']))
+    PRZ = calc_PRZ_weight(json.loads(polls['poll_2']))
 
     # result = calc_res_with_combinations(form.data, res)
 
